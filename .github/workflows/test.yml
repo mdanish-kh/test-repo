@@ -1,0 +1,21 @@
+name: Run winget
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-winget:
+    name: Run Winget
+    # wingetcreate is only supported on Windows
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    env:
+      # wingetcreate will read the following environment variable to access the GitHub token needed for submitting a PR
+      # Reference: https://aka.ms/winget-create-token
+      WINGET_CREATE_GITHUB_TOKEN: ${{ secrets.WINGET_CREATE_GITHUB_TOKEN }}
+    steps:
+      - name: Run winget
+        run: |
+          winget install wingetcreate -s winget --accept-package-agreements --accept-source-agreements | Out-Null
+          wingetcreate
