@@ -17,5 +17,5 @@ jobs:
     steps:
       - name: Run winget
         run: |
-          winget install wingetcreate -s winget --accept-package-agreements --accept-source-agreements | Out-Null
+          winget install --id Microsoft.WingetCreate -s winget --accept-source-agreements
           wingetcreate
