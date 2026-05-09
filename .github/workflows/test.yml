@@ -17,5 +17,6 @@ jobs:
     steps:
       - name: Run winget
         run: |
+          winget --version
           winget install wingetcreate -s winget -h
           wingetcreate
